@@ -1,0 +1,25 @@
+# Local development profile: mvn spring-boot:run -Dspring-boot.run.profiles=dev
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    com.agrilink: DEBUG
+    org.springframework.security: INFO
+
+agrilink:
+  security:
+    jwt:
+      secret: dev-only-secret-change-me-dev-only-secret-change-me
+  otp:
+    # Returns the OTP in the API response so clients can be built without an SMS gateway.
+    expose-in-response: true
+  payment:
+    mock:
+      # Charges succeed immediately. Set false to exercise the async webhook / dev confirm flow.
+      auto-confirm: true
+  bootstrap:
+    admin-phone: "+251900000000"
+    admin-password: "Admin@12345"
+    seed-demo-data: true
